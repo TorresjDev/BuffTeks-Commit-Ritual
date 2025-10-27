@@ -1,0 +1,39 @@
+# ==============================
+# BuffTeks Commit Ritual Project
+# Requirements File (Python Dependencies)
+# ------------------------------
+# This file lists all dependencies required to run the CLI application.
+# Each library is pinned with a minimum version for stability and compatibility.
+# ==============================
+
+# Rich - For colorful console output, banners, and progress animations.
+# Official Documentation: https://pypi.org/project/rich/
+rich>=12.0.0
+
+# Inquirer - For creating interactive CLI prompts and collecting user input.
+# Official Documentation: https://pypi.org/project/inquirer/
+inquirer>=3.4.0
+
+# Requests - For making HTTP requests to the GitHub API (used for validation and fetching user data).
+# Official Documentation: https://pypi.org/project/requests/
+requests>=2.28.0
+
+# Packages Pre-installed with Python (No need to include in requirements.txt):
+# - sys (Standard Library) - For accessing system-specific parameters and functions.
+# - os (Standard Library) - For interacting with the operating system.
+# - shutil (Standard Library) - For high-level file operations.
+# - pathlib (Standard Library) - For object-oriented filesystem paths.
+# - datetime (Standard Library) - For handling date and time operations.
+# - time (Standard Library) - For time-related functions.
+
+# ==============================
+# Notes:
+# 1. To install all dependencies, run:
+#    pip install -r requirements.txt
+#
+# 2. If developing locally with a virtual environment:
+#    python -m venv venv
+#    source venv/bin/activate  (Mac/Linux)
+#    venv\Scripts\activate     (Windows)
+#
+# ==============================

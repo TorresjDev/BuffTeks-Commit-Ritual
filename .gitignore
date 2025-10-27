@@ -1,0 +1,15 @@
+.vscode/
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore python cache files
+__pycache__/
+
+# Ignore virtual environment folders
+venv/
+
+# Ignore key files
+*.env
+.env.local
+.env.*.local
