@@ -72,6 +72,7 @@ buffteks-commit-ritual/
 | Name         | GitHub                                       | Join Date  |
 | ------------ | -------------------------------------------- | ---------- |
 | Chris Zhang | [@czhang](https://github.com/czhang) | 2025-10-27 |
+| Jesus Torres | [@torresjdev](https://github.com/torresjdev) | 2025-10-28 |
 
 ---
 
