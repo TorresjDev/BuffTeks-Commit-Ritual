@@ -55,7 +55,7 @@ Before making any changes, create your own branch to work on:
 
 ```bash
 # Create and switch to a new branch
-git checkout -b commit-buff-<your-github-username>
+git checkout -b <branch-name>
 
 # Verify you're on the new branch
 git branch
@@ -65,7 +65,7 @@ git branch
 
 1. **Click** the branch name in the bottom-left status bar (should show "main")
 2. **Select** **"Create new branch..."**
-3. **Type** your branch name:  `commit-buff-<your-github-username>`
+3. **Type** your branch name:  `<branch-name>`
 4. **Press Enter**
 
 **Why create a branch?** 
@@ -113,7 +113,7 @@ git add README.md # Stages just the README file
 git commit -m "Init: first commit to BuffTeks!"
 
 # 4. PUSH your branch to GitHub (share them with the world)
-git push origin commit-buff-<your-github-username>
+git push -u origin <branch-name> # branch-name --> buff-dev-<your-github-username>
 ```
 
 ### Method B: Using VS Code (Visual Way!)
