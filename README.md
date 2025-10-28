@@ -1,3 +1,6 @@
+<!-- need bufftek title center div -->
+<div align="center"><h1>BuffTeks Commit Ritual</h1></div>
+
 # <div align="center"><img src="https://buffteks.org/media/49d17137a37f59fb62acc5b5d87273bfff50039da527e3a2df5474c4.png" alt="BuffTeks Logo" width="300" /></div>
 
 
