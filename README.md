@@ -1,4 +1,5 @@
-# 🐃 BuffTeks Commit Ritual
+# <div align="center"><img src="https://buffteks.org/media/49d17137a37f59fb62acc5b5d87273bfff50039da527e3a2df5474c4.png" alt="BuffTeks Logo" width="300" /></div>
+
 
 Welcome to the **BuffTeks Commit Ritual** — a digital rite of passage for new members of the **BuffTeks Student Organization** at **West Texas A&M University**.  
 
@@ -28,9 +29,11 @@ It’s built with ❤️ using **Python**, **Rich**, and **GitHub’s API**, com
 buffteks-commit-ritual/
 │
 ├── main.py          # Entry point – orchestrates the ritual
-├── ui.py            # Handles Rich visuals (progress bars, banners)
-├── logic.py         # Adds users to the Hall of Fame
-├── validator.py     # Runs system and dependency checks
+├── ritual/          # Contains all ritual-related files
+│   ├── __init__.py  # Makes this a Python package
+│   ├── ui.py            # Handles Rich visuals (progress bars, banners)
+│   ├── logic.py         # Adds users to the Hall of Fame
+│   └── validator.py     # Runs system and dependency checks
 │
 ├── README.md        # You’re reading it right now
 ├── HOW-TO-GUIDE.md  # Step-by-step contributor instructions
@@ -66,7 +69,6 @@ buffteks-commit-ritual/
 | Name         | GitHub                                       | Join Date  |
 | ------------ | -------------------------------------------- | ---------- |
 | Chris Zhang | [@czhang](https://github.com/czhang) | 2025-10-27 |
-| Jesus Torres | [@torresjdev](https://github.com/torresjdev) | 2025-10-27 |
 
 ---
 
@@ -77,7 +79,7 @@ We welcome **new members**, **mentors**, and **contributors** from all majors an
 👉 To begin your journey, read the **[HOW-TO-GUIDE.md](HOW-TO-GUIDE.md)** for setup and contribution steps.
 It’s beginner-friendly, fast, and fully automated.
 
----
+<!-- ---
 
 ## 💡 Why We Built This
 
@@ -86,7 +88,7 @@ The BuffTeks Commit Ritual turns version control into a shared experience that c
 
 Every new commit is a new BuffTeks story.
 Every contribution strengthens our community.
-And every name here marks a moment of growth.
+And every name here marks a moment of growth. -->
 
 ---
 
@@ -118,6 +120,7 @@ West Texas A&M University – Paul & Virginia Engler College of Business
 **Faculty Advisor:** Dr. Carl Zhang
 **Contributors:** The BuffTeks Family 💻
 **Special Thanks:** Every student who commits to learn, grow, and share.
+**Visit us at:** [buffteks.org](https://buffteks.org)
 
 ---
 

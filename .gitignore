@@ -8,6 +8,7 @@ __pycache__/
 
 # Ignore virtual environment folders
 venv/
+.venv
 
 # Ignore key files
 *.env

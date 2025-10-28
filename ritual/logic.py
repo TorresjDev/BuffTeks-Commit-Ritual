@@ -1,12 +1,11 @@
 import re
-from turtle import st
 import requests
 from pathlib import Path
 from datetime import datetime
-
-# from streamlit import user
 from ritual.ui import console
 from rich.table import Table
+
+from ritual.validator import _is_valid_name, fetch_github_name
 
 README_PATH = Path("README.md")
 
@@ -56,22 +55,9 @@ def add_to_hall_of_fame(username: str, fullname: str):
     """
 
     val_username = username.strip().lower()
-    # --- 1st Check: Basic input validation
-    if not re.fullmatch(r"[A-Za-z0-9-]+", val_username):
-        console.print(
-            f"[red3]❌ Invalid GitHub username format. [/] {val_username}")
-        return False
-
-    # --- 2nd Check: Verify GitHub user existence
     name = fullname or fetch_github_name(val_username)
-    if not name:
-        console.print(
-            f"[red3]❌ Unable to verify GitHub user: {val_username}[/]")
-        return False
-    else:
-        name = name.replace("|", "\\|").strip()
 
-    # # --- 3rd Check: Read README.md safely
+    # Check: Read README.md safely
     section = get_hall_of_fame_section()
     if not section:
         return False
@@ -79,16 +65,16 @@ def add_to_hall_of_fame(username: str, fullname: str):
     text, table_start, section_end = section
     table_text = text[table_start:section_end]
 
-    # --- 4th Check: Prevent duplicate entries
+    # Prevent duplicate entries
     if f"@{val_username}" in text.lower():
         console.print(
             f"[yellow]🫸  A BuffTeks contributor with the GitHub username of: {username} is already in the Hall of Fame![/]")
         console.print(
-            "[cyan1]   - Please confirm and proceed to pushing your contribution to our repository![/]")
+            "[cyan1]   - Please stage and commit changes to proceed into pushing your contribution to our repository! 🔥[/]")
 
         return False
 
-    # --- 5th Step: Append new entry
+    # Append new entry
     today = datetime.now().strftime("%Y-%m-%d")
     new_entry = f"| {name} | [@{val_username}](https://github.com/{val_username}) | {today} |\n"
 
@@ -107,7 +93,7 @@ def add_to_hall_of_fame(username: str, fullname: str):
     tmp_path.replace(README_PATH)
 
     console.print(
-        f"[green3]🔥 {name} has been successfully added to the BuffTeks Hall of Fame! 🎉[/]\n")
+        f"""[#C0C0C0]==========================================================================[/]\n[gold3]🔥 {name} has been successfully added to the BuffTeks Hall of Fame! 🎉[/]\n[#C0C0C0]==========================================================================[/]""")
     return True
 
 
@@ -134,29 +120,3 @@ def display_hall_of_fame():
         table.add_row(*cols)
 
     console.print(table)
-
-
-def fetch_github_name(username: str):
-    """
-    Fetches a GitHub user's display name via the public API.
-    Returns the name if found, or None otherwise.
-    """
-    try:
-        headers = {"User-Agent": "BuffTeks-Commit-Ritual"}
-        response = requests.get(
-            f"https://api.github.com/users/{username}", headers=headers, timeout=5)
-        if response.status_code == 200:
-            data = response.json()
-            # console.print(data) # Debug: print full response data
-            return data.get("name") or username
-        elif response.status_code in (403, 429):
-            console.print(
-                "[yellow]⚠️  GitHub API limit reached. Try again later.[/]")
-        elif response.status_code == 404:
-            console.print("[red3]User not found on GitHub.[/]")
-        else:
-            console.print(
-                f"[red3]GitHub API returned status {response.status_code}.[/]")
-    except Exception as e:
-        console.print(f"[red3]Network or API error: {e}[/]")
-    return None
