@@ -71,7 +71,6 @@ buffteks-commit-ritual/
 
 | Name         | GitHub                                       | Join Date  |
 | ------------ | -------------------------------------------- | ---------- |
-| Chris Zhang | [@czhang](https://github.com/czhang) | 2025-10-27 |
 | Seth Crump | [@scrump05](https://github.com/scrump05) | 2025-10-28 |
 
 ---
