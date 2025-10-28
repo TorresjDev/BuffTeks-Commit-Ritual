@@ -1,4 +1,4 @@
-from ritual.ui import console, show_banner, run_loading_sequence, confirm_github_user
+from ritual.ui import console, show_intro_banner, run_loading_sequence, display_github_user_conf
 from ritual.logic import fetch_github_name, add_to_hall_of_fame, display_hall_of_fame
 from ritual.validator import run_system_check
 
@@ -9,7 +9,7 @@ def main():
     Handles the sequence: banner -> validation -> ritual -> contribution.
     """
     console.print("\nloading BuffTeks Commit Ritual...\n")
-    show_banner()
+    show_intro_banner()
 
     # Phase 1: Run system checks
     if not run_system_check():
@@ -31,11 +31,12 @@ def main():
 
     # input_github_username = console.input(
     #     "\n[bold cyan]👤 Enter your GitHub username:[/bold cyan] ").strip()
-    github_full_name = fetch_github_name(input_github_username)
-    full_name = confirm_github_user(github_full_name)
+    github_full_name, github_username = fetch_github_name(
+        input_github_username)
+    full_name = display_github_user_conf(github_full_name)
 
     # Phase 4: Add to Hall of Fame
-    success = add_to_hall_of_fame(input_github_username, full_name)
+    success = add_to_hall_of_fame(github_username, full_name)
     if success:
         display_hall_of_fame()
         console.print(
@@ -51,4 +52,4 @@ if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        console.print("\n[magenta]⚠️  Ritual aborted by user.[/]")
+        console.print("\n[magenta]\n⚠️  Ritual aborted by user.[/]")

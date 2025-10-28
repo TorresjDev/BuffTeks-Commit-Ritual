@@ -75,3 +75,76 @@ def _test_dependencies():
     except ImportError as e:
         console.print(f"[red3]Missing dependency:[/] {e.name}")
         return False
+
+
+def _is_valid_name(name: str, username: str) -> bool:
+    """
+    Validates the fetched GitHub name.
+    Ensures it's not None, not empty, not just the username, and contains first + last name.
+
+    Args:
+        name (str): Fetched GitHub name.
+        username (str): GitHub username.
+
+    Returns:
+        bool: True if valid, False otherwise.
+    """
+    if not name or name.strip() == "":
+        return False
+
+    name = name.strip()
+    username = username.strip().lower()
+
+    # Check if name is just the username (case-insensitive)
+    if name.lower() == username or name.lower() == f"@{username}":
+        return False
+
+    # Check if name contains at least one space (first + last name)
+    if ' ' not in name:
+        return False
+
+    return True
+
+# validate github account exists and return owner name
+
+
+def fetch_github_name(username: str):
+    """
+    Fetches a GitHub user's display name via the public API.
+    Returns the name if found, or None otherwise.
+    """
+    try:
+        headers = {"User-Agent": "BuffTeks-Commit-Ritual"}
+        response = requests.get(
+            f"https://api.github.com/users/{username}", headers=headers, timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            # console.print(data) # Debug: print full response data
+
+            if data.get("user_view_type") != "public":
+                console.print("[yellow]⚠️  GitHub user is not public.[/]")
+                console.print("Unable to access full name from GitHub.")
+                return None, None
+
+            github_username = data.get("login")
+            console.print(f"[green3]GitHub user {github_username} found[/]")
+            full_name = data.get("name")
+
+            # validate name
+            if _is_valid_name(full_name, username):
+                return full_name, github_username
+            else:
+                console.print(
+                    "[yellow] - But could not find a valid full name from GitHub account 🤔[/]")
+                return None, github_username
+        elif response.status_code in (403, 429):
+            console.print(
+                "[yellow]⚠️  GitHub API limit reached. Try again later.[/]")
+        elif response.status_code == 404:
+            console.print("[red3]User not found on GitHub.[/]")
+        else:
+            console.print(
+                f"[red3]GitHub API returned status {response.status_code}.[/]")
+    except Exception as e:
+        console.print(f"[red3]Network or API error: {e}[/]")
+    return None, None
